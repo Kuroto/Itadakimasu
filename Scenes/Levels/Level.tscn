@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cdlvb5epagnkh"]
+[gd_scene load_steps=10 format=3 uid="uid://cdlvb5epagnkh"]
 
-[ext_resource type="Texture2D" uid="uid://bdyooc7qmxrhp" path="res://Textures/T_Grid_Gray.jpg" id="1_02k47"]
+[ext_resource type="Texture2D" uid="uid://bdyooc7qmxrhp" path="res://Assets/Textures/T_Grid_Gray.jpg" id="1_02k47"]
 [ext_resource type="PackedScene" uid="uid://d0bmnx2akt2gh" path="res://Scenes/Player/Player.tscn" id="2_bk2yi"]
+[ext_resource type="PackedScene" uid="uid://8dquwqggyri3" path="res://Scenes/Levels/level_prototype.tscn" id="3_bk2yi"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_02k47"]
 sky_top_color = Color(0.6157996, 0.71541935, 0.79182833, 1)
@@ -31,8 +32,7 @@ size = Vector3(40, 1, 40)
 [node name="Level" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.81049174, -0.44798696, 0.3773737, 0, 0.6442571, 0.76480895, -0.58575016, -0.6198713, 0.52216506, 0, 7.4971213, 0)
-light_color = Color(1, 0.94509804, 0.88235295, 1)
+transform = Transform3D(0.81049174, -0.44798696, 0.3773737, 0, 0.6442571, 0.76480895, -0.58575016, -0.6198713, 0.52216506, 0, 40.485374, 0)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -49,3 +49,8 @@ shape = SubResource("BoxShape3D_0ba56")
 
 [node name="Player" parent="." instance=ExtResource("2_bk2yi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5420521, 0)
+JumpVelocity = 25.0
+gravityMultiplier = 9.0
+
+[node name="Level_Prototype" parent="." instance=ExtResource("3_bk2yi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08897781, -0.52528715, -39.602146)

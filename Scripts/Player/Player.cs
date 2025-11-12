@@ -3,8 +3,12 @@ using System;
 
 public partial class Player : CharacterBody3D
 {
-	public const float Speed = 5.0f;
-	public const float JumpVelocity = 4.5f;
+	[Export]
+	public float Speed = 5.0f;
+	[Export]
+	public float JumpVelocity = 4.5f;
+	[Export]
+	public float gravityMultiplier = 3.0f;
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -13,11 +17,11 @@ public partial class Player : CharacterBody3D
 		// Add the gravity.
 		if (!IsOnFloor())
 		{
-			velocity += GetGravity() * (float)delta;
+			velocity += GetGravity() * (float)delta * gravityMultiplier;
 		}
 
 		// Handle Jump.
-		if (Input.IsActionJustPressed("Jump") && IsOnFloor())
+		if (Input.IsActionPressed("Jump") && IsOnFloor())
 		{
 			velocity.Y = JumpVelocity;
 		}
