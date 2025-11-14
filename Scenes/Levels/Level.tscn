@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://cdlvb5epagnkh"]
+[gd_scene load_steps=11 format=3 uid="uid://cdlvb5epagnkh"]
 
 [ext_resource type="Texture2D" uid="uid://bdyooc7qmxrhp" path="res://Assets/Textures/T_Grid_Gray.jpg" id="1_02k47"]
+[ext_resource type="PackedScene" uid="uid://dc3bsregkoxhk" path="res://Scenes/Enemy/Enemy.tscn" id="2_65pnq"]
 [ext_resource type="PackedScene" uid="uid://d0bmnx2akt2gh" path="res://Scenes/Player/Player.tscn" id="2_bk2yi"]
 [ext_resource type="PackedScene" uid="uid://8dquwqggyri3" path="res://Scenes/Levels/level_prototype.tscn" id="3_bk2yi"]
 
@@ -44,13 +45,30 @@ environment = SubResource("Environment_65pnq")
 material_override = SubResource("StandardMaterial3D_vsvp5")
 mesh = SubResource("BoxMesh_sfrck")
 
+[node name="Enemy" parent="Floor/MeshInstance3D" instance=ExtResource("2_65pnq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.688638, 1.2395523, -29.028776)
+
+[node name="Enemy2" parent="Floor/MeshInstance3D" instance=ExtResource("2_65pnq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3113623, 1.2395523, -23.41983)
+
+[node name="Enemy3" parent="Floor/MeshInstance3D" instance=ExtResource("2_65pnq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.247538, 1.2395523, -11.618986)
+
+[node name="Enemy4" parent="Floor/MeshInstance3D" instance=ExtResource("2_65pnq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.353449, 1.2395523, -11.618986)
+
+[node name="Enemy5" parent="Floor/MeshInstance3D" instance=ExtResource("2_65pnq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.353449, 1.2395523, -67.276764)
+
+[node name="Enemy6" parent="Floor/MeshInstance3D" instance=ExtResource("2_65pnq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.70992, 1.2395523, -67.276764)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_0ba56")
 
 [node name="Player" parent="." instance=ExtResource("2_bk2yi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5420521, 0)
 JumpVelocity = 25.0
-gravityMultiplier = 9.0
 
 [node name="Level_Prototype" parent="." instance=ExtResource("3_bk2yi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08897781, -0.52528715, -39.602146)
+transform = Transform3D(0.5449337, 0, 0, 0, 0.5449337, 0, 0, 0, 0.5449337, 4.0659895, -0.06561732, -30.670916)
