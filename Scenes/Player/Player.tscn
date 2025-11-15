@@ -5,7 +5,7 @@
 [ext_resource type="Material" uid="uid://pb1khn636636" path="res://Assets/Materials/M_TEMP_Attack.tres" id="3_h54ih"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ft8w5"]
-size = Vector3(0.615, 0.73, 1)
+size = Vector3(0.615, 0.73, 1.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ft8w5"]
 size = Vector3(0.25, 0.25, 0.25)
@@ -69,11 +69,11 @@ script = ExtResource("2_ft8w5")
 [node name="Hitbox" type="Area3D" parent="Head/Camera3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Head/Camera3D/Hitbox"]
-transform = Transform3D(0.9480928, 0, 0, 0, 0.9480928, 0, 0, 0, 0.9480928, 0, -0.18829888, -0.97473776)
+transform = Transform3D(0.9480928, 0, 0, 0, 0.9480928, 0, 0, 0, 0.9480928, 0, -0.18829888, -1.2085452)
 shape = SubResource("BoxShape3D_ft8w5")
 
 [node name="MeleeWeapon" type="Node3D" parent="Head/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.17036152, -1.3172338)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.17036152, -1.776224)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Head/Camera3D/MeleeWeapon"]
 visible = false

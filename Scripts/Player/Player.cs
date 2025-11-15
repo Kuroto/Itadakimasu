@@ -74,12 +74,10 @@ public partial class Player : CharacterBody3D
 			{
 				if (body.IsInGroup("Enemy"))
 				{
-					if (body is Node enemy)
+					if (body is Enemy enemy)
 					{
-						 //var script = enemy.GetScript<Enemy>();
-						 var script = enemy as dynamic;
-						 script.EnemyHealth -= MeleeDamage;
-						 GD.Print($"Enemy health: {script.EnemyHealth}");
+						enemy.EnemyHealth -= MeleeDamage;
+						GD.Print($"Enemy health: {enemy.EnemyHealth}");
 					}
 				}
 			}
