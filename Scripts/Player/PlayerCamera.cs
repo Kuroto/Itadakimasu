@@ -11,7 +11,6 @@ public partial class PlayerCamera : Node3D
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 	}
 
-
 	public override void _Input(InputEvent @event)
 	{
 		if (@event is InputEventMouseMotion motion)

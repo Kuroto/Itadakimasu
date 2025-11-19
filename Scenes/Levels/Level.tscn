@@ -71,4 +71,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5420521, 0)
 JumpVelocity = 25.0
 
 [node name="Level_Prototype" parent="." instance=ExtResource("3_bk2yi")]
-transform = Transform3D(0.5449337, 0, 0, 0, 0.5449337, 0, 0, 0, 0.5449337, 4.0659895, -0.06561732, -30.670916)
+transform = Transform3D(0.5449337, 0, 0, 0, 0.5449337, 0, 0, 0, 0.5449337, 4.0224657, -0.06561923, -30.740168)

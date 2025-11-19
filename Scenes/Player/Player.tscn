@@ -53,7 +53,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody3D"]
-floor_max_angle = 1.0471976
+floor_max_angle = 1.5707964
 script = ExtResource("1_s0eop")
 Speed = 15.0
 JumpVelocity = 21.0
@@ -69,7 +69,7 @@ script = ExtResource("2_ft8w5")
 [node name="Hitbox" type="Area3D" parent="Head/Camera3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Head/Camera3D/Hitbox"]
-transform = Transform3D(0.9480928, 0, 0, 0, 0.9480928, 0, 0, 0, 0.9480928, 0, -0.18829888, -1.2085452)
+transform = Transform3D(0.9480928, 0, 0, 0, 0.9480928, 0, 0, 0, 0.9480928, 0, -0.18829888, -1.2121524)
 shape = SubResource("BoxShape3D_ft8w5")
 
 [node name="MeleeWeapon" type="Node3D" parent="Head/Camera3D"]

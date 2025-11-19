@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://fgx6q4n7vqj2"]
+
+[ext_resource type="PackedScene" uid="uid://c3v6axatwg6ku" path="res://Source/Blender/Level_Prototype_Stairs.blend" id="1_ija72"]
+[ext_resource type="Material" uid="uid://c3yjwwmugq2pq" path="res://Assets/Materials/M_TEMP_Stairs.tres" id="2_geopg"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_geopg"]
+points = PackedVector3Array(-1, -1, -1, -1, -1, 1, -1, -0.97587836, -1, 1, -1, -1, 1, -1, 1, -1, 2.7333715, 1, 1, -0.97587836, -1, -1, 2.7333715, 0.93324196, 1, 2.7333715, 1, 1, 2.7333715, 0.93324196)
+
+[node name="Level_Prototype_Stairs" instance=ExtResource("1_ija72")]
+
+[node name="Cube" parent="." index="0"]
+material_override = ExtResource("2_geopg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_geopg")
