@@ -4,23 +4,27 @@ using System;
 public partial class Player : CharacterBody3D
 {
 	[Export]
-	public float Speed = 5.0f;
+	public float StandardDamage = 10.0f;
+	[Export]
+	public float PowerDamage = 500.0f;
+	[Export]
+	public float Speed = 15.0f;
+	[Export]
+	public float SuperSpeed = 30.0f;
 	[Export]
 	public float JumpVelocity = 4.5f;
 	[Export]
 	public float GravityMultiplier = 3.0f;
-	[Export]
-	public float MeleeDamage = 10.0f;
-
+	
 	private bool _inflictedMeleeDamage = false;
 	private AnimationPlayer meleeAnim;
 	private Area3D hitbox;
-	//private RayCast3D meleeRaycast;
 
 	public override void _Ready()
 	{
 		meleeAnim = GetNode<AnimationPlayer>("AnimationPlayer");
 		hitbox = GetNode<Area3D>("Head/Camera3D/Hitbox");
+		//_speed = Speed;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -72,14 +76,63 @@ public partial class Player : CharacterBody3D
 			var bodies = hitbox.GetOverlappingBodies();
 			foreach (var body in bodies)
 			{
-				if (body.IsInGroup("Enemy"))
+				if (body is Enemy enemyStrength && body.IsInGroup("EnemyStrength"))
+				{
+					enemyStrength.strengthHealth -= StandardDamage;
+					enemyStrength.PowerDamage
+
+					GD.Print($"Enemy health: {enemyStrength.EnemyStrengthHealth}");
+				}
+
+				if (body is Enemy enemyWallStrength && body.IsInGroup("EnemyWallStrength"))
+				{
+					enemyWallStrength.WallHealth -= StandardDamage;
+
+					GD.Print($"Enemy Wall health: {enemyWallStrength.WallHealth}");
+				}
+
+				if (body is Enemy enemySpeed && body.IsInGroup("EnemySpeed"))
+				{
+					enemySpeed.EnemySpeedHealth -= StandardDamage;
+					
+					GD.Print($"Super speed health: {enemySpeed.EnemySpeedHealth}");
+				}
+
+				/*if (body.IsInGroup("EnemyStrength"))
 				{
 					if (body is Enemy enemy)
 					{
-						enemy.EnemyHealth -= MeleeDamage;
-						GD.Print($"Enemy health: {enemy.EnemyHealth}");
+						enemy.EnemyStrengthHealth -= MeleeDamage;
+
+						GD.Print($"Enemy health: {enemy.EnemyStrengthHealth}");
+					}
+
+					//_speed = Speed;
+					//_strength = PowerLevel;
+				}
+
+				else if (body.IsInGroup("EnemyWall"))
+				{
+					if (body is Enemy enemy)
+					{
+						enemy.WallHealth -= MeleeDamage;
+
+						GD.Print($"Enemy Wall health: {enemy.WallHealth}");
 					}
 				}
+
+				else if (body.IsInGroup("EnemySpeed"))
+				{
+					if (body is Enemy enemy)
+					{
+						enemy.EnemySpeedHealth -= _strength;
+						
+						GD.Print($"Super speed health: {enemy.EnemySpeedHealth}");
+					}
+
+					_speed = SuperSpeed;
+					_strength = MeleeDamage;
+				}*/
 			}
 
 			_inflictedMeleeDamage = true;

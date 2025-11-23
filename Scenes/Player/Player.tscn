@@ -58,7 +58,7 @@ script = ExtResource("1_s0eop")
 Speed = 15.0
 JumpVelocity = 21.0
 GravityMultiplier = 10.0
-MeleeDamage = 34.0
+SuperSpeed = 30.0
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.59538233, 0)

@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cdlvb5epagnkh"]
+[gd_scene load_steps=13 format=3 uid="uid://cdlvb5epagnkh"]
 
 [ext_resource type="Texture2D" uid="uid://bdyooc7qmxrhp" path="res://Assets/Textures/T_Grid_Gray.jpg" id="1_02k47"]
-[ext_resource type="PackedScene" uid="uid://dc3bsregkoxhk" path="res://Scenes/Enemy/Enemy.tscn" id="2_65pnq"]
+[ext_resource type="PackedScene" uid="uid://dc3bsregkoxhk" path="res://Scenes/Enemy/EnemyStrength.tscn" id="2_65pnq"]
 [ext_resource type="PackedScene" uid="uid://d0bmnx2akt2gh" path="res://Scenes/Player/Player.tscn" id="2_bk2yi"]
 [ext_resource type="PackedScene" uid="uid://8dquwqggyri3" path="res://Scenes/Levels/level_prototype.tscn" id="3_bk2yi"]
+[ext_resource type="PackedScene" uid="uid://dp62e5ovfa1bm" path="res://Scenes/Enemy/EnemyWall.tscn" id="5_5lnup"]
+[ext_resource type="PackedScene" uid="uid://cba0j8s8koyre" path="res://Scenes/Enemy/EnemySpeed.tscn" id="6_l0mwj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_02k47"]
 sky_top_color = Color(0.6157996, 0.71541935, 0.79182833, 1)
@@ -72,3 +74,12 @@ JumpVelocity = 25.0
 
 [node name="Level_Prototype" parent="." instance=ExtResource("3_bk2yi")]
 transform = Transform3D(0.5449337, 0, 0, 0, 0.5449337, 0, 0, 0, 0.5449337, 4.0224657, -0.06561923, -30.740168)
+
+[node name="EnemyWall" parent="." instance=ExtResource("5_5lnup")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21623564, 2.7036748, -44.05816)
+
+[node name="EnemySpeed" parent="." instance=ExtResource("6_l0mwj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.949751, 1.1234574, -40.635307)
+
+[node name="EnemySpeed2" parent="." instance=ExtResource("6_l0mwj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.132395, 1.1234574, -43.4708)

@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://cba0j8s8koyre"]
+
+[ext_resource type="Script" uid="uid://c5yijjlg7abuu" path="res://Scripts/Enemy/Enemy.cs" id="1_j5ib8"]
+[ext_resource type="Material" uid="uid://cpmx5f7a78g0i" path="res://Assets/Materials/M_TEMP_Speed.tres" id="2_j5ib8"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_i1u57"]
+size = Vector3(1.3, 1.3, 1.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_87nu3"]
+size = Vector3(1.3, 1.3, 1.3)
+
+[node name="EnemySpeed" type="RigidBody3D" groups=["EnemySpeed"]]
+script = ExtResource("1_j5ib8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("2_j5ib8")
+mesh = SubResource("BoxMesh_i1u57")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_87nu3")
