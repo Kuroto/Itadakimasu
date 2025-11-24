@@ -29,6 +29,11 @@ public partial class Enemy : RigidBody3D
 
 		if (strengthHealth <= 0)
 		{
+			if (player.CanPushEnemyBlocks)
+			{
+				player.LockPushAbility();
+			}
+
 			player.currentDamage = player.PowerDamage;
 			player.currentSpeed = player.StandardSpeed;
 			QueueFree();
@@ -36,6 +41,11 @@ public partial class Enemy : RigidBody3D
 
 		if (speedHealth <= 0)
 		{
+			if (player.CanPushEnemyBlocks)
+			{
+				player.LockPushAbility();
+			}
+
 			player.currentDamage = player.StandardDamage;
 			player.currentSpeed = player.SuperSpeed;
 			QueueFree();
@@ -43,11 +53,21 @@ public partial class Enemy : RigidBody3D
 
 		if (wallHealth <= 0)
 		{
+			if (player.CanPushEnemyBlocks)
+			{
+				player.LockPushAbility();
+			}
+
 			QueueFree();
 		}
 
 		if (interactHealth <= 0)
 		{
+			if (!player.CanPushEnemyBlocks)
+			{
+				player.UnlockPushAbility();
+			}
+
 			player.currentDamage = player.StandardDamage;
 			player.currentSpeed = player.StandardSpeed;
 			QueueFree();

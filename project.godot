@@ -30,6 +30,9 @@ EnemyStrength="All enemies"
 EnemySpeed=""
 EnemyWall=""
 Player=""
+EnemyBlock=""
+EnemyInteract=""
+StaticGroup=""
 
 [input]
 

@@ -4,12 +4,12 @@
 [ext_resource type="Material" uid="uid://vwm72soicesq" path="res://Assets/Materials/M_TEMP_Wall.tres" id="2_ktttb"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_i1u57"]
-size = Vector3(1.3, 1.3, 1.3)
+size = Vector3(1.3, 1.3, 5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_87nu3"]
-size = Vector3(3.7939792, 4.512836, 0.33374023)
+size = Vector3(3.794, 4.513, 1.289917)
 
-[node name="EnemyWall" type="RigidBody3D" groups=["EnemyWall"]]
+[node name="EnemyWall" type="RigidBody3D" groups=["EnemyWall", "StaticGroup"]]
 script = ExtResource("1_ktttb")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -18,5 +18,5 @@ material_override = ExtResource("2_ktttb")
 mesh = SubResource("BoxMesh_i1u57")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00092566013, -0.00014448166, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.007873535)
 shape = SubResource("BoxShape3D_87nu3")
