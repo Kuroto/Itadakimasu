@@ -29,6 +29,7 @@ project/assembly_name="Itadakimasu"
 EnemyStrength="All enemies"
 EnemySpeed=""
 EnemyWall=""
+Player=""
 
 [input]
 
