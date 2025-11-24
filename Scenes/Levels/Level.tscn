@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cdlvb5epagnkh"]
+[gd_scene load_steps=15 format=3 uid="uid://cdlvb5epagnkh"]
 
 [ext_resource type="Texture2D" uid="uid://bdyooc7qmxrhp" path="res://Assets/Textures/T_Grid_Gray.jpg" id="1_02k47"]
 [ext_resource type="PackedScene" uid="uid://dc3bsregkoxhk" path="res://Scenes/Enemy/EnemyStrength.tscn" id="2_65pnq"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://8dquwqggyri3" path="res://Scenes/Levels/level_prototype.tscn" id="3_bk2yi"]
 [ext_resource type="PackedScene" uid="uid://dp62e5ovfa1bm" path="res://Scenes/Enemy/EnemyWall.tscn" id="5_5lnup"]
 [ext_resource type="PackedScene" uid="uid://cba0j8s8koyre" path="res://Scenes/Enemy/EnemySpeed.tscn" id="6_l0mwj"]
+[ext_resource type="PackedScene" uid="uid://dthfckfdsettv" path="res://Scenes/Enemy/EnemyInteract.tscn" id="7_4nh8f"]
+[ext_resource type="PackedScene" uid="uid://d31tm40kpd5bj" path="res://Scenes/Enemy/EnemyBlock.tscn" id="8_etd3f"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_02k47"]
 sky_top_color = Color(0.6157996, 0.71541935, 0.79182833, 1)
@@ -83,3 +85,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.949751, 1.1234574, -40.635
 
 [node name="EnemySpeed2" parent="." instance=ExtResource("6_l0mwj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.132395, 1.1234574, -43.4708)
+
+[node name="EnemyStrength" parent="." instance=ExtResource("8_etd3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.29282, 1.9688387, 5.8939104)
+
+[node name="EnemyStrength3" parent="." instance=ExtResource("8_etd3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.457506, 1.9688387, -30.198761)
+
+[node name="EnemyStrength4" parent="." instance=ExtResource("8_etd3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.72222, 1.9688387, -49.71033)
+
+[node name="EnemyStrength5" parent="." instance=ExtResource("8_etd3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.203981, 1.9688387, -79.30404)
+
+[node name="EnemyStrength2" parent="." instance=ExtResource("8_etd3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.909981, 1.9688387, 11.673505)
+
+[node name="EnemyStrength6" parent="." instance=ExtResource("7_4nh8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.600885, 1.1542568, -3.943705)
+
+[node name="EnemyStrength7" parent="." instance=ExtResource("7_4nh8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5263815, 1.1542568, -28.225128)
+
+[node name="EnemyStrength8" parent="." instance=ExtResource("7_4nh8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.23615, 1.1542568, -39.139107)

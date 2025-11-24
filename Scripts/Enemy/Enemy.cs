@@ -6,6 +6,7 @@ public partial class Enemy : RigidBody3D
 	public float strengthHealth = 100.0f; // Health of strength enemies.
 	public float speedHealth = 100.0f; // Health of speed enemies.
 	public float wallHealth = 5000.0f; // Health of walls/boulders.
+	public float interactHealth = 100.0f; // Health of the interactability enemies.
 
 	Player player;
 
@@ -42,6 +43,13 @@ public partial class Enemy : RigidBody3D
 
 		if (wallHealth <= 0)
 		{
+			QueueFree();
+		}
+
+		if (interactHealth <= 0)
+		{
+			player.currentDamage = player.StandardDamage;
+			player.currentSpeed = player.StandardSpeed;
 			QueueFree();
 		}
 	}

@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://d31tm40kpd5bj"]
+
+[ext_resource type="Script" uid="uid://c5yijjlg7abuu" path="res://Scripts/Enemy/Enemy.cs" id="1_krqf5"]
+[ext_resource type="Material" uid="uid://c057jgdj7n4eq" path="res://Assets/Materials/M_TEMP_Block.tres" id="2_krqf5"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_i1u57"]
+size = Vector3(3, 3, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_87nu3"]
+size = Vector3(3, 3, 3)
+
+[node name="EnemyStrength" type="RigidBody3D" groups=["EnemyBlock"]]
+script = ExtResource("1_krqf5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("2_krqf5")
+mesh = SubResource("BoxMesh_i1u57")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_87nu3")

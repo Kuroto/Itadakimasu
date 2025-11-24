@@ -80,27 +80,6 @@ public partial class Player : CharacterBody3D
 			var bodies = hitbox.GetOverlappingBodies();
 			foreach (var body in bodies)
 			{
-				/*if (body is Enemy enemyStrength && body.IsInGroup("EnemyStrength"))
-				{
-					enemyStrength.strengthHealth -= currentDamage;
-
-					GD.Print($"Enemy health: {enemyStrength.strengthHealth}");
-				}
-
-				if (body is Enemy enemySpeed && body.IsInGroup("EnemySpeed"))
-				{
-					enemySpeed.speedHealth -= currentDamage;
-					
-					GD.Print($"Super speed health: {enemySpeed.speedHealth}");
-				}
-
-				if (body is Enemy enemyWallStrength && body.IsInGroup("EnemyWall"))
-				{
-					enemyWallStrength.wallHealth -= currentDamage;
-
-					GD.Print($"Enemy Wall health: {enemyWallStrength.wallHealth}");
-				}*/
-
 				if (body.IsInGroup("EnemyStrength"))
 				{
 					if (body is Enemy enemy)
@@ -128,6 +107,16 @@ public partial class Player : CharacterBody3D
 						enemy.wallHealth -= currentDamage;
 
 						GD.Print($"Enemy Wall health: {enemy.wallHealth}");
+					}
+				}
+
+				if (body.IsInGroup("EnemyInteract"))
+				{
+					if (body is Enemy enemy)
+					{
+						enemy.interactHealth -= currentDamage;
+
+						GD.Print($"Enemy Interact health: {enemy.interactHealth}");
 					}
 				}
 			}
