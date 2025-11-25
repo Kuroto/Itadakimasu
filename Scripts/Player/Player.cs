@@ -2,22 +2,14 @@ using Godot;
 
 public partial class Player : CharacterBody3D
 {
-	[Export]
-	public float StandardDamage = 10.0f;
-	[Export]
-	public float PowerDamage = 500.0f;
-	[Export]
-	public float StandardSpeed = 15.0f;
-	[Export]
-	public float SuperSpeed = 30.0f;
-	[Export]
-	public float JumpVelocity = 4.5f;
-	[Export]
-	public float GravityMultiplier = 3.0f;
-	[Export]
-	public float PushForce = 0.2f;
-	[Export]
-	public string PushGroupName = "EnemyBlock";
+	[Export] public float StandardDamage = 10.0f;
+	[Export] public float PowerDamage = 500.0f;
+	[Export] public float StandardSpeed = 15.0f;
+	[Export] public float SuperSpeed = 30.0f;
+	[Export] public float JumpVelocity = 4.5f;
+	[Export] public float GravityMultiplier = 3.0f;
+	[Export] public float PushForce = 0.2f;
+	[Export] public string PushGroupName = "EnemyBlock";
 
 	public float currentDamage = 10.0f;
 	public float currentSpeed = 15.0f;
@@ -33,48 +25,47 @@ public partial class Player : CharacterBody3D
 		meleeAnim = GetNode<AnimationPlayer>("AnimationPlayer");
 		hitbox = GetNode<Area3D>("Head/Camera3D/Hitbox");
 		currentDamage = StandardDamage;
+
+		UpDirection = Vector3.Up;
+		// IMPORTANT FIXES
+		FloorMaxAngle = Mathf.DegToRad(25);  // Prevent walls from counting as floor
 	}
 
 	public void UnlockPushAbility()
 	{
-		if (CanPushEnemyBlocks)
-		{
-			return;
-		}
-
-		CanPushEnemyBlocks = true;
+		if (!CanPushEnemyBlocks)
+			CanPushEnemyBlocks = true;
 	}
 
 	public void LockPushAbility()
 	{
-		if (!CanPushEnemyBlocks)
+		if (CanPushEnemyBlocks)
 		{
-			return;
+			CanPushEnemyBlocks = false;
+			_lastMoveDirection = Vector3.Zero;
 		}
-
-		CanPushEnemyBlocks = false;
-		_lastMoveDirection = Vector3.Zero;
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector3 velocity = Velocity;
 
-		// Add the gravity.
+		// Gravity
 		if (!IsOnFloor())
 		{
 			velocity += GetGravity() * (float)delta * GravityMultiplier;
 		}
 
-		// Handle Jump.
-		if (Input.IsActionPressed("Jump") && IsOnFloor())
+		// Jump
+		if (Input.IsActionJustPressed("Jump") && IsOnFloor())
 		{
 			velocity.Y = JumpVelocity;
 		}
 
-		// Get the input direction and handle the movement/deceleration.
+		// Input
 		Vector2 inputDir = Input.GetVector("Player_left", "Player_right", "Player_forward", "Player_backward");
 		Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
+
 		if (direction != Vector3.Zero)
 		{
 			velocity.X = direction.X * currentSpeed;
@@ -89,13 +80,14 @@ public partial class Player : CharacterBody3D
 		}
 
 		Velocity = velocity;
+
+		// CRITICAL FIX: Tell Godot what "up" is
 		MoveAndSlide();
 
 		OnMeleeAttack();
 		HandlePushCollisions();
 	}
 
-	// Apply damage to enemies
 	private void OnMeleeAttack()
 	{
 		if (Input.IsActionJustPressed("Player_attack"))
@@ -114,7 +106,6 @@ public partial class Player : CharacterBody3D
 					if (body is Enemy enemy)
 					{
 						enemy.strengthHealth -= currentDamage;
-
 						GD.Print($"Enemy health: {enemy.strengthHealth}");
 					}
 				}
@@ -124,7 +115,6 @@ public partial class Player : CharacterBody3D
 					if (body is Enemy enemy)
 					{
 						enemy.speedHealth -= currentDamage;
-						
 						GD.Print($"Super speed health: {enemy.speedHealth}");
 					}
 				}
@@ -134,7 +124,6 @@ public partial class Player : CharacterBody3D
 					if (body is Enemy enemy)
 					{
 						enemy.wallHealth -= currentDamage;
-
 						GD.Print($"Enemy Wall health: {enemy.wallHealth}");
 					}
 				}
@@ -144,7 +133,6 @@ public partial class Player : CharacterBody3D
 					if (body is Enemy enemy)
 					{
 						enemy.interactHealth -= currentDamage;
-
 						GD.Print($"Enemy Interact health: {enemy.interactHealth}");
 					}
 				}
@@ -157,15 +145,11 @@ public partial class Player : CharacterBody3D
 	private void HandlePushCollisions()
 	{
 		if (!CanPushEnemyBlocks || string.IsNullOrEmpty(PushGroupName) || _lastMoveDirection == Vector3.Zero)
-		{
 			return;
-		}
 
 		int collisionCount = GetSlideCollisionCount();
 		if (collisionCount == 0)
-		{
 			return;
-		}
 
 		for (int i = 0; i < collisionCount; i++)
 		{
