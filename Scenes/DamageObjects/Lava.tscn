@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpea26iyeorfl"]
+
+[ext_resource type="Script" uid="uid://dva0b2fbg1xv2" path="res://Scripts/DamageObjects/DamageObjects.cs" id="1_beys5"]
+[ext_resource type="Material" uid="uid://ci607tsyvh8q3" path="res://Assets/Materials/M_TEMP_Lava.tres" id="2_k6nqi"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_i1u57"]
+size = Vector3(4, 0.1, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_87nu3"]
+size = Vector3(4, 0.1, 4)
+
+[node name="DamageObjects" type="Node3D" groups=["DamageObjects", "NoBlood"]]
+script = ExtResource("1_beys5")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+material_override = ExtResource("2_k6nqi")
+mesh = SubResource("BoxMesh_i1u57")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_87nu3")

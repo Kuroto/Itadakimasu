@@ -9,7 +9,7 @@ size = Vector3(1.3, 1.3, 5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_87nu3"]
 size = Vector3(3.794, 4.513, 1.289917)
 
-[node name="EnemyWall" type="RigidBody3D" groups=["EnemyWall", "StaticGroup"]]
+[node name="EnemyWall" type="RigidBody3D" groups=["EnemyWall", "NoBlood"]]
 script = ExtResource("1_ktttb")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

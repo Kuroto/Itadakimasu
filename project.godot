@@ -32,7 +32,8 @@ EnemyWall=""
 Player=""
 EnemyBlock=""
 EnemyInteract=""
-StaticGroup=""
+NoBlood=""
+DamageObjects=""
 
 [input]
 

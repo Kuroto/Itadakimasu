@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cdlvb5epagnkh"]
+[gd_scene load_steps=16 format=3 uid="uid://cdlvb5epagnkh"]
 
 [ext_resource type="Texture2D" uid="uid://bdyooc7qmxrhp" path="res://Assets/Textures/T_Grid_Gray.jpg" id="1_02k47"]
 [ext_resource type="PackedScene" uid="uid://dc3bsregkoxhk" path="res://Scenes/Enemy/EnemyStrength.tscn" id="2_65pnq"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cba0j8s8koyre" path="res://Scenes/Enemy/EnemySpeed.tscn" id="6_l0mwj"]
 [ext_resource type="PackedScene" uid="uid://dthfckfdsettv" path="res://Scenes/Enemy/EnemyInteract.tscn" id="7_4nh8f"]
 [ext_resource type="PackedScene" uid="uid://d31tm40kpd5bj" path="res://Scenes/Enemy/EnemyBlock.tscn" id="8_etd3f"]
+[ext_resource type="PackedScene" uid="uid://cpea26iyeorfl" path="res://Scenes/DamageObjects/Lava.tscn" id="9_d3u4r"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_02k47"]
 sky_top_color = Color(0.6157996, 0.71541935, 0.79182833, 1)
@@ -109,3 +110,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5263815, 1.1542568, -28.225
 
 [node name="EnemyStrength8" parent="." instance=ExtResource("7_4nh8f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.23615, 1.1542568, -39.139107)
+
+[node name="EnemyLava" parent="." instance=ExtResource("9_d3u4r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.98023, 0.45692396, -17.834484)
+
+[node name="EnemyLava2" parent="." instance=ExtResource("9_d3u4r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.996927, 0.45692396, -17.834484)
+
+[node name="EnemyLava3" parent="." instance=ExtResource("9_d3u4r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.996927, 0.45692396, -13.805866)
+
+[node name="EnemyLava4" parent="." instance=ExtResource("9_d3u4r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.967688, 0.45692396, -13.805866)
+
+[node name="EnemyLava5" parent="." instance=ExtResource("9_d3u4r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0984373, 0.45692396, -17.823315)
+
+[node name="EnemyLava6" parent="." instance=ExtResource("9_d3u4r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.096979, 0.45692396, -13.821398)
+
+[node name="EnemyLava7" parent="." instance=ExtResource("9_d3u4r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0967151, 0.45692396, -17.823315)
+
+[node name="EnemyLava8" parent="." instance=ExtResource("9_d3u4r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0952572, 0.45692396, -13.821398)
