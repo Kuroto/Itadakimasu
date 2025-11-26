@@ -21,6 +21,7 @@ public partial class Player : CharacterBody3D
 	private AnimationPlayer meleeAnim;
 	private Area3D hitbox;
 	private Vector3 _lastMoveDirection = Vector3.Zero;
+	private AudioController _audio;
 
 	// PackedScene for blood particles
 	private PackedScene _bloodSplatterScene = ResourceLoader.Load<PackedScene>("res://Scenes/Effects/BloodSplatter.tscn");
@@ -33,6 +34,7 @@ public partial class Player : CharacterBody3D
 		meleeAnim = GetNode<AnimationPlayer>("AnimationPlayer");
 		hitbox = GetNode<Area3D>("Head/Camera3D/Hitbox");
 		currentDamage = StandardDamage;
+		_audio = GetNode<AudioController>("/root/AudioController");
 
 		// Wall sticking fix
 		UpDirection = Vector3.Up;
@@ -127,12 +129,14 @@ public partial class Player : CharacterBody3D
 					if (body.IsInGroup("EnemyStrength"))
 					{
 						enemy.strengthHealth -= currentDamage;
+						_audio.PlayEat();
 						GD.Print($"Enemy health: {enemy.strengthHealth}");
 					}
 
 					if (body.IsInGroup("EnemySpeed"))
 					{
 						enemy.speedHealth -= currentDamage;
+						_audio.PlayEat();
 						GD.Print($"Super speed health: {enemy.speedHealth}");
 					}
 
@@ -145,6 +149,7 @@ public partial class Player : CharacterBody3D
 					if (body.IsInGroup("EnemyInteract"))
 					{
 						enemy.interactHealth -= currentDamage;
+						_audio.PlayEat();
 						GD.Print($"Enemy Interact health: {enemy.interactHealth}");
 					}
 				}
@@ -189,14 +194,6 @@ public partial class Player : CharacterBody3D
 		_activeBlood.Clear();
 	}
 
-	/*private void OnAnimationPlayerAnimationFinished(StringName animName)
-	{
-		if (animName == "Attack")
-		{
-			StopBlood();
-		}
-	}*/
-
 	private async void AutoFreeBlood(GpuParticles3D blood)
 {
 	if (blood == null) return;
@@ -235,14 +232,20 @@ public partial class Player : CharacterBody3D
 	public void TakeDamage(int amount)
 	{
 		Health -= amount;
-		if (Health < 0) Health = 0;
+		_audio.PlayPlayerHurt();
+		if (Health < 0)
+		{
+			Health = 0;
+		}
 
 		GD.Print($"Player took {amount} damage! Health: {Health}");
 
 		if (Health == 0)
 		{
+			_audio.PlayPlayerDeath();
+			DisplayServer.MouseSetMode(DisplayServer.MouseMode.Visible);
+			GetTree().ChangeSceneToFile("res://Scenes/UI/MainMenu.tscn");
 			GD.Print("Player is dead!");
-			// Add your death logic here (respawn, game over, etc.)
 		}
 	}
 }

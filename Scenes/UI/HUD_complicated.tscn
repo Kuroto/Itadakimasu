@@ -1,0 +1,107 @@
+[gd_scene load_steps=10 format=3 uid="uid://qoxkolj6makk"]
+
+[ext_resource type="Script" uid="uid://bgj7u1ktexura" path="res://Scripts/HUD.cs" id="1_hspyf"]
+[ext_resource type="Texture2D" uid="uid://dp3ghoyuh13pc" path="res://Assets/UI/Sprout Lands - UI Pack - Basic pack/Sprite sheets/Sprite sheet for Basic Pack.png" id="2_aai0k"]
+[ext_resource type="Texture2D" uid="uid://dlqdmvj1a8urr" path="res://Assets/UI/Sprout Lands - UI Pack - Basic pack/Sprite sheets/Modified Sprite sheet for Basic Pack.png" id="3_xkisg"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qc5w2"]
+texture = ExtResource("3_xkisg")
+region_rect = Rect2(163, 210, 90, 27)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i4i0y"]
+texture = ExtResource("3_xkisg")
+region_rect = Rect2(259, 212, 90, 25)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ykvyr"]
+texture = ExtResource("3_xkisg")
+region_rect = Rect2(645, 68, 22, 24)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lelo4"]
+texture = ExtResource("3_xkisg")
+region_rect = Rect2(677, 70, 22, 22)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1ree7"]
+texture = ExtResource("3_xkisg")
+region_rect = Rect2(837, 100, 22, 24)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d2sja"]
+texture = ExtResource("3_xkisg")
+region_rect = Rect2(869, 102, 22, 22)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_hspyf")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(1000, 400)
+offset_left = 460.0
+offset_top = 320.0
+offset_right = 1460.0
+offset_bottom = 720.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_aai0k")
+region_rect = Rect2(741, 38, 22, 22)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -500.5
+offset_top = -319.0
+offset_right = 500.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="NinePatchRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 60
+
+[node name="StartButton" type="Button" parent="NinePatchRect/MarginContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.41983843, 0.32752374, 0.24811381, 1)
+theme_override_constants/outline_size = 4
+theme_override_constants/h_separation = 4
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxTexture_qc5w2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_i4i0y")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qc5w2")
+
+[node name="SettingsButton" type="Button" parent="NinePatchRect/MarginContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxTexture_ykvyr")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_lelo4")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ykvyr")
+
+[node name="ExitGameButton" type="Button" parent="NinePatchRect/MarginContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.41983843, 0.32752374, 0.24811381, 1)
+theme_override_constants/outline_size = 4
+theme_override_constants/h_separation = 4
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxTexture_1ree7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_d2sja")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1ree7")

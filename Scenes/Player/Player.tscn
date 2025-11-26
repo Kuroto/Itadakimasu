@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://d0bmnx2akt2gh"]
+[gd_scene load_steps=12 format=3 uid="uid://d0bmnx2akt2gh"]
 
 [ext_resource type="Script" uid="uid://d1fge0sxakk7i" path="res://Scripts/Player/Player.cs" id="1_s0eop"]
 [ext_resource type="Script" uid="uid://davolksmsde2a" path="res://Scripts/Player/PlayerCamera.cs" id="2_ft8w5"]
 [ext_resource type="Material" uid="uid://pb1khn636636" path="res://Assets/Materials/M_TEMP_Attack.tres" id="3_h54ih"]
+[ext_resource type="PackedScene" uid="uid://bl6poh0w16pjy" path="res://Source/Blender/Jaw/UpperJaw.blend" id="4_ude3g"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ft8w5"]
 size = Vector3(0.615, 0.73, 1.5)
@@ -30,6 +31,30 @@ tracks/0/keys = {
 "update": 1,
 "values": [false, true, false]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/Camera3D/UpperJaw:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.049999997, 0.099999994),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.17432347, -3.1415925, -2.6592026e-08), Vector3(0.22432719, -3.1415925, 3.3579145e-08), Vector3(-0.17453292, -3.1415927, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head/Camera3D/UpperJaw2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.049999997, 0.099999994),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.50024617, 3.1415925, -3.1415927), Vector3(-0.15522963, 3.1415925, -3.1415927), Vector3(0.5009095, 3.1415927, -3.1415927)]
+}
 
 [sub_resource type="Animation" id="Animation_jmcll"]
 length = 0.001
@@ -44,6 +69,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/Camera3D/UpperJaw:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.17432347, -3.1415925, -2.6592026e-08)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head/Camera3D/UpperJaw2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.50024617, 3.1415925, -3.1415927)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4wape"]
@@ -72,11 +121,18 @@ shape = SubResource("BoxShape3D_ft8w5")
 
 [node name="MeleeWeapon" type="Node3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.17036152, -1.776224)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Head/Camera3D/MeleeWeapon"]
 visible = false
 material_override = ExtResource("3_h54ih")
 mesh = SubResource("BoxMesh_ft8w5")
+
+[node name="UpperJaw" parent="Head/Camera3D" instance=ExtResource("4_ude3g")]
+transform = Transform3D(-0.02, -8.06054e-12, -2.9741472e-09, -5.2377996e-10, 0.019696886, 0.0034688385, 2.9276725e-09, 0.0034688385, -0.019696886, 0.0044252872, 0.20331281, -0.4339139)
+
+[node name="UpperJaw2" parent="Head/Camera3D" instance=ExtResource("4_ude3g")]
+transform = Transform3D(0.02, 2.9997835e-10, 2.649869e-09, 1.5342076e-09, -0.01754929, -0.009592831, 2.181284e-09, 0.009592831, -0.01754929, 0.0044252872, -0.088330805, -0.4339139)
 
 [node name="CapsuleMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_l3ax4")

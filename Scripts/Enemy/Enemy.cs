@@ -10,10 +10,13 @@ public partial class Enemy : RigidBody3D
 
 	Player player;
 
+	private AudioController _audio;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		var playerNode = GetTree().GetFirstNodeInGroup("Player") as Player;
+		_audio = GetNode<AudioController>("/root/AudioController");
   		
 		if (playerNode != null)
 	  	player = playerNode;
@@ -36,6 +39,7 @@ public partial class Enemy : RigidBody3D
 
 			player.currentDamage = player.PowerDamage;
 			player.currentSpeed = player.StandardSpeed;
+			_audio.PlayDeath();
 			QueueFree();
 		}
 
@@ -48,6 +52,7 @@ public partial class Enemy : RigidBody3D
 
 			player.currentDamage = player.StandardDamage;
 			player.currentSpeed = player.SuperSpeed;
+			_audio.PlayDeath();
 			QueueFree();
 		}
 
@@ -70,6 +75,7 @@ public partial class Enemy : RigidBody3D
 
 			player.currentDamage = player.StandardDamage;
 			player.currentSpeed = player.StandardSpeed;
+			_audio.PlayDeath();
 			QueueFree();
 		}
 	}
