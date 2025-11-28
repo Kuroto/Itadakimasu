@@ -1,27 +1,30 @@
 using Godot;
+using System;
 using System.Collections.Generic;
 
 public partial class Player : CharacterBody3D
 {
-	[Export] public float StandardDamage = 10.0f;
+	[Export] public float StandardDamage = 20.0f;
 	[Export] public float PowerDamage = 500.0f;
 	[Export] public float StandardSpeed = 15.0f;
 	[Export] public float SuperSpeed = 30.0f;
 	[Export] public float JumpVelocity = 4.5f;
 	[Export] public float GravityMultiplier = 3.0f;
-	[Export] public float PushForce = 0.2f;
+	[Export] public float PushForce = 0.5f;
 	[Export] public string PushGroupName = "EnemyBlock";
 
 	public int Health { get; private set; } = 100;
 	public float currentDamage = 10.0f;
 	public float currentSpeed = 15.0f;
 	public bool CanPushEnemyBlocks { get; private set; } = false;
+	//public ProgressBar healthBar;
 
 	private bool _inflictedMeleeDamage = false;
 	private AnimationPlayer meleeAnim;
 	private Area3D hitbox;
 	private Vector3 _lastMoveDirection = Vector3.Zero;
 	private AudioController _audio;
+	private HUD _hud;
 
 	// PackedScene for blood particles
 	private PackedScene _bloodSplatterScene = ResourceLoader.Load<PackedScene>("res://Scenes/Effects/BloodSplatter.tscn");
@@ -36,6 +39,8 @@ public partial class Player : CharacterBody3D
 		hitbox = GetNode<Area3D>("Head/Camera3D/Hitbox");
 		currentDamage = StandardDamage;
 		_audio = GetNode<AudioController>("/root/AudioController");
+		_hud = GetNode<HUD>("/root/HUD"); // Adjust path to your actual scene
+		_hud.SetHealth(Health); // Initialize bar
 
 		// Wall sticking fix
 		UpDirection = Vector3.Up;
@@ -247,25 +252,24 @@ public partial class Player : CharacterBody3D
 
 	// ---------------- Player Health Damage Logic ----------------
 	public void TakeDamage(int amount)
+{
+	Health -= amount;
+	if (Health < 0)
+		Health = 0;
+
+	_hud?.SetHealth(Health);
+
+	_audio.PlayPlayerHurt();
+
+	GD.Print($"Player took {amount} damage! Health: {Health}");
+
+	if (Health == 0)
 	{
-		Health -= amount;
-		_audio.PlayPlayerHurt();
-		if (Health < 0)
-		{
-			Health = 0;
-		}
-
-		GD.Print($"Player took {amount} damage! Health: {Health}");
-
-		if (Health == 0)
-		{
-			_audio.PlayPlayerDeath();
-			DisplayServer.MouseSetMode(DisplayServer.MouseMode.Visible);
-			GetTree().ChangeSceneToFile("res://Scenes/UI/MainMenu.tscn");
-			GD.Print("Player is dead!");
-		}
+		_audio.PlayPlayerDeath();
+		DisplayServer.MouseSetMode(DisplayServer.MouseMode.Visible);
+		GetTree().ChangeSceneToFile("res://Scenes/UI/MainMenu.tscn");
 	}
-
+}
 	private void DisableShadowsInModel(Node3D model)
 	{
 		foreach (Node child in model.GetChildren())
@@ -281,6 +285,4 @@ public partial class Player : CharacterBody3D
 			}
 		}
 	}
-
-	
 }

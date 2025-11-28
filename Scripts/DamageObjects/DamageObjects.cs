@@ -2,7 +2,7 @@ using Godot;
 
 public partial class DamageObjects : Node3D
 {
-	[Export] public int Damage = 20;
+	[Export] public int Damage = 10;
 	[Export] public float DamageInterval = 0.2f; // damage every 0.2 seconds
 
 	private Timer _timer;
@@ -17,17 +17,18 @@ public partial class DamageObjects : Node3D
 			return;
 		}
 
-		// Create a timer for repeated damage
+		// Create timer for repeated damage
 		_timer = new Timer
 		{
 			WaitTime = DamageInterval,
-			OneShot = false,
-			Autostart = false
+			Autostart = false,
+			OneShot = false
 		};
+
 		AddChild(_timer);
 		_timer.Timeout += OnTimerTimeout;
 
-		// Connect signals
+		// Connect area signals
 		area.BodyEntered += OnBodyEntered;
 		area.BodyExited += OnBodyExited;
 	}
@@ -38,10 +39,10 @@ public partial class DamageObjects : Node3D
 		{
 			_player = player;
 
-			// Deal damage immediately safely
-			_player.CallDeferred("TakeDamage", Damage);
+			// Deal immediate damage safely
+			_player.CallDeferred(nameof(Player.TakeDamage), Damage);
 
-			// Start timer for repeated damage safely
+			// Start repeated damage
 			if (IsInsideTree())
 				_timer.Start();
 		}
@@ -59,6 +60,8 @@ public partial class DamageObjects : Node3D
 	private void OnTimerTimeout()
 	{
 		if (_player != null && _player.IsInsideTree())
+		{
 			_player.TakeDamage(Damage);
+		}
 	}
 }
