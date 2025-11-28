@@ -11,6 +11,8 @@ public partial class AudioController : Node3D
 	private AudioStreamPlayer _death;
 	private AudioStreamPlayer _playerDeath;
 	private AudioStreamPlayer _playerHurt;
+	private AudioStreamPlayer _playerBite;
+	private AudioStreamPlayer _playerWallHit;
 
 	public override void _Ready()
 	{
@@ -20,6 +22,8 @@ public partial class AudioController : Node3D
 		_death = GetNode<AudioStreamPlayer>("Death");
 		_playerDeath = GetNode<AudioStreamPlayer>("PlayerDeath");
 		_playerHurt = GetNode<AudioStreamPlayer>("PlayerHurt");
+		_playerBite = GetNode<AudioStreamPlayer>("PlayerBite");
+		_playerWallHit = GetNode<AudioStreamPlayer>("WallHit");
 
 		if (!Mute)
 			PlayMusic();
@@ -66,6 +70,22 @@ public partial class AudioController : Node3D
 		if (!Mute && _playerDeath != null)
 		{
 			_playerDeath.Play();
+		}
+	}
+
+	public void PlayPlayerBite()
+	{
+		if (!Mute && _playerBite != null)
+		{
+			_playerBite.Play();
+		}
+	}
+
+	public void PlayWallHit()
+	{
+		if (!Mute && _playerWallHit != null)
+		{
+			_playerWallHit.Play();
 		}
 	}
 }

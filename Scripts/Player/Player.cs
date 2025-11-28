@@ -29,6 +29,7 @@ public partial class Player : CharacterBody3D
 	// Active blood particle instances
 	private List<GpuParticles3D> _activeBlood = new List<GpuParticles3D>();
 
+	// ----------- START OF READY ------------
 	public override void _Ready()
 	{
 		meleeAnim = GetNode<AnimationPlayer>("AnimationPlayer");
@@ -39,6 +40,19 @@ public partial class Player : CharacterBody3D
 		// Wall sticking fix
 		UpDirection = Vector3.Up;
 		FloorMaxAngle = Mathf.DegToRad(45); // Prevent walls from counting as floor
+
+		// Remove shadow for the PlayerMesh
+   		var playerMesh = GetNode<MeshInstance3D>("PlayerMesh");
+		playerMesh.CastShadow = GeometryInstance3D.ShadowCastingSetting.Off;
+
+		// Remove shadow for the Upper and Lower jaws are Node3D containers
+		var upperJaw = GetNode<Node3D>("Head/Camera3D/UpperJaw");
+		var lowerJaw = GetNode<Node3D>("Head/Camera3D/LowerJaw");
+
+		//DisableShadowsInModel(upperJaw);
+		//DisableShadowsInModel(lowerJaw);
+		
+		base._Ready();
 	}
 
 	public void UnlockPushAbility()
@@ -103,6 +117,7 @@ public partial class Player : CharacterBody3D
 		if (Input.IsActionJustPressed("Player_attack"))
 		{
 			meleeAnim.Play("Attack");
+			_audio.PlayPlayerBite();
 			_inflictedMeleeDamage = false;
 
 			// Start blood emission for all overlapping enemies
@@ -124,6 +139,7 @@ public partial class Player : CharacterBody3D
 			var bodies = hitbox.GetOverlappingBodies();
 			foreach (var body in bodies)
 			{
+				
 				if (body is Enemy enemy)
 				{
 					if (body.IsInGroup("EnemyStrength"))
@@ -143,6 +159,7 @@ public partial class Player : CharacterBody3D
 					if (body.IsInGroup("EnemyWall"))
 					{
 						enemy.wallHealth -= currentDamage;
+						_audio.PlayWallHit();
 						GD.Print($"Enemy Wall health: {enemy.wallHealth}");
 					}
 
@@ -248,4 +265,22 @@ public partial class Player : CharacterBody3D
 			GD.Print("Player is dead!");
 		}
 	}
+
+	private void DisableShadowsInModel(Node3D model)
+	{
+		foreach (Node child in model.GetChildren())
+		{
+			if (child is MeshInstance3D mesh)
+			{
+				mesh.CastShadow = GeometryInstance3D.ShadowCastingSetting.Off;
+			}
+			else if (child is Node3D node3D)
+			{
+				// Recursively check deeper children
+				DisableShadowsInModel(node3D);
+			}
+		}
+	}
+
+	
 }
