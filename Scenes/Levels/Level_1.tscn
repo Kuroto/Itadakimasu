@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=4 uid="uid://di6thv7lqykhd"]
+[gd_scene load_steps=77 format=4 uid="uid://di6thv7lqykhd"]
 
 [ext_resource type="PackedScene" uid="uid://dn72h1ff1ubmu" path="res://Source/Blender/Level_1.blend" id="1_7pr3o"]
 [ext_resource type="PackedScene" uid="uid://d0bmnx2akt2gh" path="res://Scenes/Player/Player.tscn" id="2_q8yj7"]
@@ -119,6 +119,9 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_asl7l")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_hs11j"]
+data = PackedVector3Array(-1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, 1, 1, 1, -1, 1, 1)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_i6xvf"]
 points = PackedVector3Array(1, 1, 1, 1, 1, -1, -1, 1, 1, 1, -1, 1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1)
@@ -1443,10 +1446,15 @@ shape = SubResource("ConvexPolygonShape3D_q6jrw")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_020/StaticBody3D" index="0"]
 shape = SubResource("ConvexPolygonShape3D_x6ugg")
 
-[node name="@MeshInstance3D@306929" type="MeshInstance3D" parent="." index="326"]
+[node name="CorridorPlatform" type="MeshInstance3D" parent="." index="326"]
 transform = Transform3D(12.532698, 0, 0, 0, -0.034626815, 0, 0, 0, -7.9075255, 2.0664089, 3.7897987, -366.39917)
 mesh = SubResource("ArrayMesh_uqbbx")
 skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="CorridorPlatform" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CorridorPlatform/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_hs11j")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube_021" index="0"]
 
