@@ -112,6 +112,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.59538233, 0)
 script = ExtResource("2_ft8w5")
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
+fov = 90.0
 
 [node name="Hitbox" type="Area3D" parent="Head/Camera3D"]
 
@@ -129,10 +130,10 @@ material_override = ExtResource("3_h54ih")
 mesh = SubResource("BoxMesh_ft8w5")
 
 [node name="UpperJaw" parent="Head/Camera3D" instance=ExtResource("4_ude3g")]
-transform = Transform3D(-0.02, -8.06054e-12, -2.9741472e-09, -5.2377996e-10, 0.019696886, 0.0034688385, 2.9276725e-09, 0.0034688385, -0.019696886, 0, 0.203, -0.434)
+transform = Transform3D(-0.02, -8.06054e-12, -2.9741472e-09, -5.2377996e-10, 0.019696886, 0.0034688385, 2.9276725e-09, 0.0034688385, -0.019696886, 0, 0.24989098, -0.008231372)
 
 [node name="LowerJaw" parent="Head/Camera3D" instance=ExtResource("4_ude3g")]
-transform = Transform3D(0.02, 2.9997835e-10, 2.649869e-09, 1.5342076e-09, -0.01754929, -0.009592831, 2.181284e-09, 0.009592831, -0.01754929, 0, -0.088, -0.434)
+transform = Transform3D(0.02, 2.9997835e-10, 2.649869e-09, 1.5342076e-09, -0.01754929, -0.009592831, 2.181284e-09, 0.009592831, -0.01754929, 0, -0.041109025, -0.008231372)
 
 [node name="PlayerMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_l3ax4")
